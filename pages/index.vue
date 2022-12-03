@@ -4,8 +4,8 @@
         <div class="quiz-button-container">
             <button 
                 class="quiz-button" 
-                v-for="answer in this.questions[this.currentQuestion].answers" 
-                :key="answer"
+                v-for="(answer, index) in this.questions[this.currentQuestion].answers" 
+                :key="index"
                 @click="submitAnswer(answer)"
             >
                 {{ answer.content }}
