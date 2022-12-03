@@ -1,5 +1,5 @@
 <template>
-    <div class="quiz-container" v-if="(questions.length > 0)">
+    <div class="quiz-container" v-if="((questions.length > 0) && !quizOver)">
         <h3>{{ this.questions[this.currentQuestion].content }}</h3>
         <div class="quiz-button-container">
             <button class="quiz-button" v-for="answer in this.questions[this.currentQuestion].answers" :key="answer">
@@ -14,6 +14,7 @@ export default {
     name: 'IndexPage',
     data() {
         return {
+            quizOver: false,
             currentQuestion: 0,
             questions: [],
         };
