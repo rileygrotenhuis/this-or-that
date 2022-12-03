@@ -18,3 +18,32 @@ nav {
 nav h1 {
     margin: auto 0;
 }
+
+.quiz-container {
+    width: fit-content;
+    margin: auto;
+}
+
+.quiz-container h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.quiz-button-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.quiz-button {
+    background-color: white;
+    font-size: 25px;
+    width: 250px;
+    height: 150px;
+    border-radius: 25px;
+}
+
+.quiz-button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
