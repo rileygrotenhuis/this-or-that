@@ -1,12 +1,9 @@
 <template>
-    <div class="quiz-container">
-        <h3>Are Ghosts Real?</h3>
+    <div class="quiz-container" v-if="(questions.length > 0)">
+        <h3>{{ this.questions[this.currentQuestion].content }}</h3>
         <div class="quiz-button-container">
-            <button class="quiz-button">
-                Yes
-            </button>
-            <button class="quiz-button">
-                No
+            <button class="quiz-button" v-for="answer in this.questions[this.currentQuestion].answers" :key="answer">
+                {{ answer.content }}
             </button>
         </div>
     </div>
@@ -15,5 +12,14 @@
 <script>
 export default {
     name: 'IndexPage',
+    data() {
+        return {
+            currentQuestion: 0,
+            questions: [],
+        };
+    },
+    async fetch() {
+        this.questions = await fetch('/api/questions').then(res => res.json());
+    },
 };
 </script>
