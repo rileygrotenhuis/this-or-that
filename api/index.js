@@ -26,4 +26,19 @@ app.get('/api/questions', async (req, res) => {
     return res.json(questions);
 });
 
+app.post('/api/submit', async (req, res) => {
+    const { question_id, answer_id } = req.body;
+
+    const prisma = new PrismaClient();
+
+    const submission = await prisma.submissions.create({
+        data: {
+            question_id: question_id,
+            answer_id: answer_id,
+        },
+    });
+
+    return res.json(submission);
+});
+
 module.exports = app;
