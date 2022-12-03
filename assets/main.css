@@ -4,4 +4,17 @@ h1, h2, h3, h4, h5, h6, p {
 
 body {
     background-color: #121212;
+    width: 60%;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+
+nav h1 {
+    margin: auto 0;
 }
