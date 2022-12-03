@@ -25,11 +25,11 @@ export default {
         };
     },
     async fetch() {
-        this.questions = await fetch('/api/questions').then(res => res.json());
+        this.questions = await fetch('http://localhost:3000/api/questions').then(res => res.json());
     },
     methods: {
         async submitAnswer(answer) {
-            await fetch('/api/submit', {
+            await fetch('http://localhost:3000/api/submit', {
                 method: 'POST',
                 body: JSON.stringify({
                     question_id: this.questions[this.currentQuestion].id,
