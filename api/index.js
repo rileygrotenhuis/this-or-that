@@ -23,6 +23,8 @@ app.get('/api/questions', async (req, res) => {
         },
     });
 
+    prisma.$disconnect();
+
     return res.json(questions);
 });
 
@@ -38,7 +40,24 @@ app.post('/api/submit', async (req, res) => {
         },
     });
 
+    prisma.$disconnect();
+
     return res.json(submission);
+});
+
+app.get('/api/results', async (req, res) => {
+    const prisma = new PrismaClient();
+
+    const results = await prisma.submissions.findMany({
+        include: {
+            questions: true,
+            answers: true,
+        },
+    });
+
+    prisma.$disconnect();
+
+    return res.json(results);
 });
 
 module.exports = app;
