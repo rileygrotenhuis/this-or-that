@@ -1,16 +1,29 @@
 <template>
-    <div class="quiz-container" v-if="((questions.length > 0) && !quizOver)">
-        <h3>{{ this.questions[this.currentQuestion].content }}</h3>
-        <div class="quiz-button-container">
-            <button 
-                class="quiz-button" 
-                v-for="(answer, index) in this.questions[this.currentQuestion].answers" 
-                :key="index"
-                @click="submitAnswer(answer)"
-            >
-                {{ answer.content }}
-            </button>
+    <div v-if="(this.questions.length > 0)">
+        <div class="quiz-container" v-if="(!this.quizOver)">
+            <h3>{{ this.questions[this.currentQuestion].content }}</h3>
+            <div class="quiz-button-container">
+                <button 
+                    class="quiz-button" 
+                    v-for="(answer, index) in this.questions[this.currentQuestion].answers" 
+                    :key="index"
+                    @click="submitAnswer(answer)"
+                >
+                    {{ answer.content }}
+                </button>
+            </div>
         </div>
+        <div class="quiz-container" v-else>
+            <h3>Quiz Over</h3>
+            <a href="/results">
+                <button>
+                    View Results
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="quiz-container" v-else>
+        <h3>Retrieving Quiz...</h3>
     </div>
 </template>
 
@@ -40,7 +53,7 @@ export default {
 
             this.currentQuestion++;
 
-            if (this.currentQuestion > this.questions.length) {
+            if (this.currentQuestion > this.questions.length - 1) {
                 this.quizOver = true;
             }
         }
