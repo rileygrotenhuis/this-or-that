@@ -8,24 +8,24 @@ datasource db {
 }
 
 model answers {
-  id          BigInt        @id @default(autoincrement())
-  question_id BigInt?
+  id          Int           @id @default(autoincrement())
+  question_id Int?
   content     String?       @db.VarChar
   questions   questions?    @relation(fields: [question_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   submissions submissions[]
 }
 
 model questions {
-  id          BigInt        @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   content     String?       @db.VarChar
   answers     answers[]
   submissions submissions[]
 }
 
 model submissions {
-  id          BigInt     @id @default(autoincrement())
-  question_id BigInt?
-  answer_id   BigInt?
+  id          Int        @id @default(autoincrement())
+  question_id Int?
+  answer_id   Int?
   answers     answers?   @relation(fields: [answer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   questions   questions? @relation(fields: [question_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
