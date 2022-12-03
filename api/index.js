@@ -48,13 +48,6 @@ app.post('/api/submit', async (req, res) => {
 app.get('/api/results', async (req, res) => {
     const prisma = new PrismaClient();
 
-    // const results = await prisma.submissions.findMany({
-    //     include: {
-    //         questions: true,
-    //         answers: true,
-    //     },
-    // });
-
     const results = await prisma.questions.findMany({
         include: {
             submissions: true,
