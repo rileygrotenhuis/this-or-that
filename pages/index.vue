@@ -2,7 +2,12 @@
     <div class="quiz-container" v-if="((questions.length > 0) && !quizOver)">
         <h3>{{ this.questions[this.currentQuestion].content }}</h3>
         <div class="quiz-button-container">
-            <button class="quiz-button" v-for="answer in this.questions[this.currentQuestion].answers" :key="answer">
+            <button 
+                class="quiz-button" 
+                v-for="answer in this.questions[this.currentQuestion].answers" 
+                :key="answer"
+                @click="submitAnswer(answer)"
+            >
                 {{ answer.content }}
             </button>
         </div>
@@ -22,5 +27,23 @@ export default {
     async fetch() {
         this.questions = await fetch('/api/questions').then(res => res.json());
     },
+    methods: {
+        async submitAnswer(answer) {
+            await fetch('/api/submit', {
+                method: 'POST',
+                body: JSON.stringify({
+                    question_id: this.questions[this.currentQuestion].id,
+                    answer_id: answer.id
+                }),
+                headers: { 'Content-Type': 'application/json' }                
+            });
+
+            this.currentQuestion++;
+
+            if (this.currentQuestion > this.questions.length) {
+                this.quizOver = true;
+            }
+        }
+    }
 };
 </script>
