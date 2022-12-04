@@ -42,9 +42,7 @@ export default {
         };
     },
     async fetch() {
-        this.results = await fetch(`${apiUrl}/api/results`).then(
-            (res) => res.json()
-        );
+        this.results = await this.$axios.$get(`${apiUrl}/api/results`);
     },
     methods: {
         previousQuestion() {
