@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { apiUrl } from '../config';
-
 export default {
     name: 'IndexPage',
     data() {
