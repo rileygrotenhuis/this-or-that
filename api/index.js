@@ -48,30 +48,39 @@ app.post('/api/submit', async (req, res) => {
 app.get('/api/results', async (req, res) => {
     const prisma = new PrismaClient();
 
-    const results = await prisma.questions.findMany({
+    let results = await prisma.questions.findMany({
         include: {
             submissions: true,
+            answers: true,
         },
-    });
-
-    const totals = await prisma.submissions.groupBy({
-        by: ['question_id'],
-        _count: {
-            question_id: true,
-        },
-    });
-
-    const finalTotals = {};
-
-    totals.forEach((value, index) => {
-        finalTotals[value.question_id] = value._count.question_id;
     });
 
     prisma.$disconnect();
 
-    const repsonse = { results, finalTotals };
+    results.forEach((result, index) => {
+        result.new_answers = {};
 
-    return res.json(repsonse);
+        result.answers.forEach((answer, index) => {
+            result.new_answers[answer.id] = answer;
+        });
+
+        result.new_submissions = {};
+        result.submissions.forEach((submission, index) => {
+            if (result.new_submissions[submission.answer_id]) {
+                result.new_submissions[submission.answer_id]++;
+            } else {
+                result.new_submissions[submission.answer_id] = 1;
+            }
+        });
+
+        result.answers = result.new_answers;
+        delete result.new_answers;
+
+        result.submissions = result.new_submissions;
+        delete result.new_submissions;
+    });
+
+    return res.json(results);
 });
 
 module.exports = app;
