@@ -83,4 +83,7 @@ app.get('/results', async (req, res) => {
     return res.json(results);
 });
 
-module.exports = app;
+export default {
+    path: '/api',
+    handler: app,
+};

@@ -47,7 +47,7 @@ export default {
         baseURL: `${apiUrl}/api`,
     },
 
-    serverMiddleware: [{ path: '/api', handler: '~/api/index.js' }],
+    serverMiddleware: ['~/api'],
 
     // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
     vuetify: {
