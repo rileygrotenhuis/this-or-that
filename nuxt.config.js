@@ -44,7 +44,7 @@ export default {
         browserBaseURL: process.env.BROWSER_BASE_URL,
     },
 
-    serverMiddleware: ['~/api/index.js'],
+    serverMiddleware: [{ path: '/api', handler: '~/api/index.js' }],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},

@@ -77,7 +77,4 @@ app.get('/results', async (req, res) => {
     return res.send(results);
 });
 
-export default {
-    path: '/api',
-    handler: app,
-};
+export default app;
