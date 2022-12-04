@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { server } from '../config';
+import { apiUrl } from '../config';
 
 export default {
     name: 'IndexPage',
@@ -41,12 +41,12 @@ export default {
     },
     async fetch() {
         this.questions = await fetch(
-            `${server}/api/questions`
+            `${apiUrl}/api/questions`
         ).then((res) => res.json());
     },
     methods: {
         async submitAnswer(answer) {
-            await fetch('http://localhost:3000/api/submit', {
+            await fetch(`${apiUrl}/api/submit`, {
                 method: 'POST',
                 body: JSON.stringify({
                     question_id: this.questions[this.currentQuestion].id,

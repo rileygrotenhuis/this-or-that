@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { server } from '../config';
+import { apiUrl } from '../config';
 
 export default {
     name: 'ResultsPage',
@@ -42,7 +42,7 @@ export default {
         };
     },
     async fetch() {
-        this.results = await fetch(`${server}/api/results`).then(
+        this.results = await fetch(`${apiUrl}/api/results`).then(
             (res) => res.json()
         );
     },
