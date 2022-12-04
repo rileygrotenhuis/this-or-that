@@ -1,5 +1,5 @@
 import colors from 'vuetify/es5/util/colors';
-import { server } from './config';
+import { apiUrl } from './config';
 
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
@@ -44,7 +44,7 @@ export default {
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: `${server}/api`,
+        baseURL: `${apiUrl}/api`,
     },
 
     serverMiddleware: [{ path: '/api', handler: '~/api/index.js' }],
