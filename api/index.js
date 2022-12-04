@@ -72,12 +72,6 @@ app.get('/results', async (req, res) => {
                 result.new_submissions[submission.answer_id] = 1;
             }
         });
-
-        // result.answers = result.new_answers;
-        // delete result.new_answers;
-
-        // result.submissions = result.new_submissions;
-        // delete result.new_submissions;
     });
 
     return res.json(results);
