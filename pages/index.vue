@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { server } from '../config';
+
 export default {
     name: 'IndexPage',
     data() {
@@ -39,7 +41,7 @@ export default {
     },
     async fetch() {
         this.questions = await fetch(
-            'http://localhost:3000/api/questions'
+            `${server}/api/questions`
         ).then((res) => res.json());
     },
     methods: {

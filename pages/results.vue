@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { server } from '../config';
+
 export default {
     name: 'ResultsPage',
     data() {
@@ -40,7 +42,7 @@ export default {
         };
     },
     async fetch() {
-        this.results = await fetch('http://localhost:3000/api/results').then(
+        this.results = await fetch(`${server}/api/results`).then(
             (res) => res.json()
         );
     },
