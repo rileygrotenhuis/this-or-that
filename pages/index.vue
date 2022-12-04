@@ -1,11 +1,13 @@
 <template>
-    <div v-if="(this.questions.length > 0)">
-        <div class="quiz-container" v-if="(!this.quizOver)">
+    <div v-if="this.questions.length > 0">
+        <div class="quiz-container" v-if="!this.quizOver">
             <h3>{{ this.questions[this.currentQuestion].content }}</h3>
             <div class="quiz-button-container">
-                <button 
-                    class="quiz-button" 
-                    v-for="(answer, index) in this.questions[this.currentQuestion].answers" 
+                <button
+                    class="quiz-button"
+                    v-for="(answer, index) in this.questions[
+                        this.currentQuestion
+                    ].answers"
                     :key="index"
                     @click="submitAnswer(answer)"
                 >
@@ -16,9 +18,7 @@
         <div class="quiz-container" v-else>
             <h3>Quiz Over</h3>
             <a href="/results">
-                <button>
-                    View Results
-                </button>
+                <button>View Results</button>
             </a>
         </div>
     </div>
@@ -38,7 +38,9 @@ export default {
         };
     },
     async fetch() {
-        this.questions = await fetch('http://localhost:3000/api/questions').then(res => res.json());
+        this.questions = await fetch(
+            'http://localhost:3000/api/questions'
+        ).then((res) => res.json());
     },
     methods: {
         async submitAnswer(answer) {
@@ -46,9 +48,9 @@ export default {
                 method: 'POST',
                 body: JSON.stringify({
                     question_id: this.questions[this.currentQuestion].id,
-                    answer_id: answer.id
+                    answer_id: answer.id,
                 }),
-                headers: { 'Content-Type': 'application/json' }                
+                headers: { 'Content-Type': 'application/json' },
             });
 
             this.currentQuestion++;
@@ -56,7 +58,7 @@ export default {
             if (this.currentQuestion > this.questions.length - 1) {
                 this.quizOver = true;
             }
-        }
-    }
+        },
+    },
 };
 </script>

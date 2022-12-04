@@ -1,9 +1,19 @@
 <template>
-    <div v-if="(this.results.length > 0)" class="results-container">
-        <h3 class="results-title">{{ this.results[this.currentResult].content }}</h3>
+    <div v-if="this.results.length > 0" class="results-container">
+        <h3 class="results-title">
+            {{ this.results[this.currentResult].content }}
+        </h3>
         <div class="results-submissions-container">
-            <div v-for="(value, index) in this.results[this.currentResult].answers" :key="index">
-                <h3 class="results-submission-item"> {{value.content}} : {{ results[currentResult].new_submissions[value.id] }} Total Votes ({{ getPercentage(value) }}%)</h3>
+            <div
+                v-for="(value, index) in this.results[this.currentResult]
+                    .answers"
+                :key="index"
+            >
+                <h3 class="results-submission-item">
+                    {{ value.content }} :
+                    {{ results[currentResult].new_submissions[value.id] }} Total
+                    Votes ({{ getPercentage(value) }}%)
+                </h3>
             </div>
         </div>
         <div class="results-button-container">
@@ -30,7 +40,9 @@ export default {
         };
     },
     async fetch() {
-        this.results = await fetch('http://localhost:3000/api/results').then(res => res.json());
+        this.results = await fetch('http://localhost:3000/api/results').then(
+            (res) => res.json()
+        );
     },
     methods: {
         previousQuestion() {
@@ -39,13 +51,18 @@ export default {
             }
         },
         nextQuestion() {
-            if (this.currentResult < this.results.length -1) {
+            if (this.currentResult < this.results.length - 1) {
                 this.currentResult++;
             }
         },
         getPercentage(value) {
-            return (this.results[this.currentResult].new_submissions[value.id] / this.results[this.currentResult].submissions.length).toFixed(2) * 100;
-        }
-    }
-}
+            return (
+                (
+                    this.results[this.currentResult].new_submissions[value.id] /
+                    this.results[this.currentResult].submissions.length
+                ).toFixed(2) * 100
+            );
+        },
+    },
+};
 </script>
