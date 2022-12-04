@@ -10,11 +10,11 @@ app.use(cors());
 
 const { PrismaClient } = require('@prisma/client');
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     return res.json('This or That - API');
 });
 
-app.get('/api/questions', async (req, res) => {
+app.get('/questions', async (req, res) => {
     const prisma = new PrismaClient();
 
     const questions = await prisma.questions.findMany({
@@ -28,7 +28,7 @@ app.get('/api/questions', async (req, res) => {
     return res.json(questions);
 });
 
-app.post('/api/submit', async (req, res) => {
+app.post('/submit', async (req, res) => {
     const { question_id, answer_id } = req.body;
 
     const prisma = new PrismaClient();
@@ -45,7 +45,7 @@ app.post('/api/submit', async (req, res) => {
     return res.json(submission);
 });
 
-app.get('/api/results', async (req, res) => {
+app.get('/results', async (req, res) => {
     const prisma = new PrismaClient();
 
     let results = await prisma.questions.findMany({
