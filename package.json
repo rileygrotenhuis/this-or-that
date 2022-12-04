@@ -4,10 +4,9 @@
     "private": true,
     "scripts": {
         "dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt",
-        "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt generate && nuxt build --output public",
+        "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt generate && nuxt build --output public && prisma generate",
         "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt start",
         "generate": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt generate",
-        "postinstall": "prisma generate",
         "lint:prettier": "prettier --check .",
         "lint": "npm run lint:prettier",
         "lintfix": "prettier --write --list-different ."
