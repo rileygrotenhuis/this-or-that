@@ -4,6 +4,14 @@
 
 <script>
 export default {
-    name: 'ResultsPage'
+    name: 'ResultsPage',
+    data() {
+        return {
+            results: [],
+        };
+    },
+    async fetch() {
+        this.results = await fetch('http://localhost:3000/api/results').then(res => res.json());
+    }
 }
 </script>
