@@ -78,12 +78,14 @@ nav a {
 .results-title {
     text-align: center;
     margin-bottom: 15px;
+    font-size: 50px;
 }
 
 .results-submissions-container {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
+    font-size: 15px;
 }
 
 .results-button-container {
