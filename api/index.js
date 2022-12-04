@@ -73,11 +73,11 @@ app.get('/api/results', async (req, res) => {
             }
         });
 
-        result.answers = result.new_answers;
-        delete result.new_answers;
+        // result.answers = result.new_answers;
+        // delete result.new_answers;
 
-        result.submissions = result.new_submissions;
-        delete result.new_submissions;
+        // result.submissions = result.new_submissions;
+        // delete result.new_submissions;
     });
 
     return res.json(results);
