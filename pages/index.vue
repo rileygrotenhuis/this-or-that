@@ -37,16 +37,14 @@ export default {
             quizOver: false,
             currentQuestion: 0,
             questions: [],
-            apiURL: '',
         };
     },
     async fetch() {
-        this.apiURL = apiUrl;
-        this.questions = await this.$axios.$get(`${apiUrl}/api/questions`);
+        this.questions = await this.$axios.$get('/api/questions');
     },
     methods: {
         async submitAnswer(answer) {
-            await this.$axios.$post(`${this.apiURL}/api/submit`, {
+            await this.$axios.$post('/api/submit', {
                 question_id: this.questions[this.currentQuestion].id,
                 answer_id: answer.id,
             });
