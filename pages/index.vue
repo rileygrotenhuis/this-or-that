@@ -40,7 +40,12 @@ export default {
         };
     },
     async fetch() {
-        this.questions = await this.$axios.$get('/api/questions');
+        this.questions = await this.$axios.$get('/api/questions', {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            },
+        });
     },
     methods: {
         async submitAnswer(answer) {

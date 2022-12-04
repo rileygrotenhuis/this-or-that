@@ -42,7 +42,12 @@ export default {
         };
     },
     async fetch() {
-        this.results = await this.$axios.$get('/api/results');
+        this.results = await this.$axios.$get('/api/results', {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+            },
+        });
     },
     methods: {
         previousQuestion() {
