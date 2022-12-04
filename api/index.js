@@ -77,4 +77,4 @@ app.get('/results', async (req, res) => {
     return res.send(results);
 });
 
-export default app;
+module.exports = app;
