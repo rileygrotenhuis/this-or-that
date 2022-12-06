@@ -1,5 +1,3 @@
-import { apiUrl } from './config';
-
 export default {
     target: 'server',
 
@@ -18,7 +16,7 @@ export default {
             { hid: 'description', name: 'description', content: '' },
             { name: 'format-detection', content: 'telephone=no' },
         ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: '/Logo.png' }],
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css

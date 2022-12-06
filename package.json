@@ -2,6 +2,7 @@
     "name": "this-or-that",
     "version": "1.0.0",
     "private": true,
+    "author": "Riley Grotenhuis",
     "scripts": {
         "dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt",
         "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && nuxt generate && nuxt build --output public",

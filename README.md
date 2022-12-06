@@ -1,4 +1,4 @@
-# this-or-that
+# This or That
 
 ## Build Setup
 
