@@ -1,6 +1,6 @@
 # This or That
 
-Example this or that quiz that displays results at the end.
+This is an example this or that quiz that displays results at the end.
 
 ## Build Setup
 
